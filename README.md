@@ -12,6 +12,10 @@ There are 2 main differences with this code compared to Twilio's:
 1. Create a venv by running `python3 -m venv venv && source venv/bin/activate`
 2. Run `pip install -r requirements.txt`
 3. Run the app by running `python app.py`
+4. By default, the app will be bound to localhost on port 5000
+5. To expose the app to the internet, you can use ngrok by running the command `ngrok http 5000`
+6. In the Twilio Console, use the ngrok URL as your Voice URL, appending `/twiml` for the phone number you would like to use. For example - https://123456789.ngrok.io/twiml
+7. You will also need to replace the WSS URL in the [streams.xml](templates/streams.xml) file, for example - wss://123456789.ngrok.io/
 
 ## About the app
 
