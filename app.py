@@ -49,9 +49,22 @@ def echo(ws):
                     "streamSid": stream_sid,
                     "media": {"payload": audio},
                 }
+                mark_message = {
+                    "event": "mark",
+                    "streamSid": stream_sid,
+                    "mark": {
+                        "name": "This is my mark message!"
+                    }
+                }
                 ws.send(send_to_twilio)
+                log(f"Sending the following message to Twilio: {mark_message}")
+                ws.send(mark_message)
                 played_tone = True
                 continue
+            log(message)
+        
+        if data["event"] == "mark":
+            log("We got a mark message back from Twilio!")
             log(message)
 
         if data["event"] == "closed":
