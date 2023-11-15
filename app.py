@@ -56,9 +56,9 @@ def echo(ws):
                         "name": "This is my mark message!"
                     }
                 }
-                ws.send(send_to_twilio)
+                ws.send(json.dumps(send_to_twilio))
                 log(f"Sending the following message to Twilio: {mark_message}")
-                ws.send(mark_message)
+                ws.send(json.dumps(mark_message))
                 played_tone = True
                 continue
             log(message)
