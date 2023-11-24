@@ -21,4 +21,4 @@ There are 2 main differences with this code compared to Twilio's:
 
 Included with the app (app.py) is a mulaw encoded raw (headerless) audio file that has been encoded using base64. When the call first connects, the app will recieve 100 chunks of audio from the caller, once it reached 100 chunks, the app will send audio back to Twilio. You will hear the full audio - "When you use Twilio and media stream you can achieve great things"
 
-app_clear.py extend the above app by exploring how to sending [clear message](https://www.twilio.com/docs/voice/twiml/stream#message-clear-to-twilio) to interrupt the audio that has been sent. You will hear partial audio - "When you use Twilio and media stream"
+app_clear.py extend the above app by exploring how to sending [clear message](https://www.twilio.com/docs/voice/twiml/stream#message-clear-to-twilio) to interrupt the audio that has been sent. You will hear partial audio - "When you use Twilio and media stream". Run the app by running python app_clear.py
