@@ -42,6 +42,9 @@ def echo(ws):
             stream_sid = data["streamSid"]
             log(message)
 
+        if data["event"] == "dtmf":
+            log(message)
+
         if data["event"] == "media":
             if int(data["media"]["chunk"]) >= 100 and not played_tone:
                 send_to_twilio = {
@@ -67,7 +70,7 @@ def echo(ws):
             log("We got a mark message back from Twilio!")
             log(message)
 
-        if data["event"] == "closed":
+        if data["event"] == "stop":
             log(message)
             ws.close()
             break
