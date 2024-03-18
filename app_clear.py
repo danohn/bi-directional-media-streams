@@ -46,7 +46,7 @@ def echo(ws):
             log(message)
 
         if data["event"] == "media":
-            if int(data["media"]["chunk"]) >= 100 and not played_tone:
+            if int(data["media"]["chunk"]) >= 100 and int(data["media"]["chunk"]) <= 200 and not played_tone:
                 send_to_twilio = {
                     "event": "media",
                     "streamSid": stream_sid,
@@ -64,6 +64,18 @@ def echo(ws):
                 ws.send(json.dumps(mark_message))
                 played_tone = True
                 continue
+            
+            #try to send clear to stop the previous message midway
+            if int(data["media"]["chunk"]) >= 201 and played_tone:
+                clear_message = {
+                    "event": "clear",
+                    "streamSid": stream_sid,
+                }
+                log(f"Sending the following message to Twilio: {clear_message}")
+                ws.send(json.dumps(clear_message))
+                played_tone = False
+                continue
+
             log(message)
         
         if data["event"] == "mark":
